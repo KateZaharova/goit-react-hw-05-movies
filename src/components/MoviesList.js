@@ -1,31 +1,19 @@
+import { useLocation, Link } from "react-router-dom";
 
 
-getMoviesList
-
-export default function MoviesList = ({ movies }) => {
+export default function MoviesList({ movies }) {
+  const location = useLocation();
   return (
-    <Container>
+    <div>
       {movies.map((movie) => (
         <div key={movie.id}>
-          <Link to={`${movie.id}`}>
-            <p>{movie.name}</p>
+          <Link to={`movies/${movie.id}`} state={{from:location}}>
+            <p>{movie.title}</p>
           </Link>
         </div>
       ))}
-    </Container>
+    </div>
   );
 };
 
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNjI2MDljYWYyYTY0YjRiNjM3Njc1MzcwZWM5MWY3NiIsInN1YiI6IjY1MDg5MWJlMzczYWMyMDBmZjA1ZmQ0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BVAxCHBNXR4qKxdw9juTzLiuwt4zS2kUHqWgFfmhnsk'
-  }
-};
-
-fetch('https://api.themoviedb.org/3/authentication', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));

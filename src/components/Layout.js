@@ -1,5 +1,7 @@
-import { NavLink} from 'react-router-dom';
+import { NavLink, Outlet} from 'react-router-dom';
 import styled from 'styled-components';
+import { GlobalStyle } from "./GlobalStyle";
+
 
 
 export const StyledLink = styled(NavLink)`
@@ -26,25 +28,18 @@ export const Container = styled.div`
   font-size: 40px;
 `;
 
-/*
+
 export const Layout = () => {
   return (
-    <Wrapper>
+    <Container>
       <header>
-        <ul>
-          <li>
-            <StyledLink to="/create" end>
-              Create quiz
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink to="/quizzes" end>
-              Quiz list
-            </StyledLink>
-          </li>
-        </ul>
-      </header>
-      <Outlet />
-    </Wrapper>
+      <nav>
+          <StyledLink to="/" end>Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
+        </nav>
+          </header>
+          <GlobalStyle />
+          <Outlet />
+          </Container>
   );
-}; */
+}; 

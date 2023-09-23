@@ -1,18 +1,30 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import { fetchPopularMoviesToday } from "api";
+import MoviesList from "../components/MoviesList"
 
 
 export default function Home() {
-    const moviesList = fetchPopularMoviesToday();
+     const [moviesItems, setMoviesItems] = useState([]);
+
+    useEffect(() => {
+    async function getMovies() {
+        try {
+        const popularMovies = await fetchPopularMoviesToday();
+        setMoviesItems(popularMovies.results);
+        } catch (error) {
+            console.log(error)
+      } 
+    }
+
+    getMovies();
+  }, []);
+
     return (
         <div>
             <main>
             <h1>Trending today</h1>
-            <ul>
-                <li key="{id}" moviesList={ moviesList}>
-                    <Link to="movieList"></Link>
-                </li>
-            </ul>
+                <MoviesList movies={moviesItems}></MoviesList>
         </main>
         <Outlet/>
         </div >
@@ -22,9 +34,3 @@ export default function Home() {
 }
 
 
-
-
-/*
-/trending/get-trending список найпопулярніших фільмів 
-на сьогодні для створення колекції на головній сторінці.
-*/
