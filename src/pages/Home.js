@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { fetchPopularMoviesToday } from "api";
-import MoviesList from "../components/MoviesList"
+import MoviesList from "../components/MoviesList/MoviesList"
 
 
 export default function Home() {

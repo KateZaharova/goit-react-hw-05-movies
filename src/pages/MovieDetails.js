@@ -1,15 +1,15 @@
-import { Link, Outlet, useParams } from "react-router-dom";
-import { useEffect, useState,  } from 'react';
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
+import { useEffect, useState} from 'react';
 import { fetchMovieDetails } from "api";
+import {Container, WrapperPhoto, WrapperText, StyledLink} from "../components/MovieDetails.styled"
 
 
 export default function MovieDetails() {
-
+    const location = useLocation();
     const [movieDetails, setMovieDetails] = useState({});
     const imgPrefix = "https://image.tmdb.org/t/p/w500"
     const { movieId } = useParams();
-    console.log(movieId)
-
+ 
     useEffect(() => {
     async function getMovieDetails() {
         try {
@@ -22,24 +22,53 @@ export default function MovieDetails() {
     getMovieDetails();
     }, []);
         
+
+    function getYear(date) {
+        if (date !== undefined) {
+            return date.slice(0, 4);
+        } 
+        return '';
+    };
+
+
+    function getGenres(genres) {
+        if (genres !== undefined) {
+            return genres.map(genre => genre.name).join(' ');
+        }
+        return '';
+    }
+
     return (
-        <div>
-            <button>Go back</button>
-            <img src={imgPrefix+movieDetails.poster_path} alt={movieDetails.title} />
+        <section>
+            <Container>
+                <WrapperPhoto>
+                    <Link to={location?.state?.from ?? '/'}>Go back</Link>
+                    <img src={imgPrefix + movieDetails.poster_path} alt={movieDetails.title} />
+                </WrapperPhoto>
+                <WrapperText>
+                    <h2>{movieDetails.title} ({getYear(movieDetails.release_date)})</h2>
+                    <p>User Score:...%</p>
+                    <h2>Overview</h2>
+                    <p>{movieDetails.overview}</p>
+                    <h2>Genres</h2>
+                    <p>{getGenres(movieDetails.genres)}</p>
+               </WrapperText>
 
-
-            <p>Additional information</p>
-            <ul>
+            </Container>
+            <div>
+                <h2>Additional information</h2>
+            <nav>
                 <li>
-                    <Link to="cast">Cast</Link>
+                    <StyledLink to="cast">Cast</StyledLink>
                 </li>
                 <li>
-                    <Link to="reviews">Reviews</Link>
+                    <StyledLink to="reviews">Reviews</StyledLink>
                 </li>
-            </ul>
+            </nav>
+            </div>
+            
             <Outlet/>
-        </div>
+        </section>
     )
 }
 
-//export const fetchMovieDetails = async (movieId) => {

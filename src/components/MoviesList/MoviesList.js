@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 
 
+
 export default function MoviesList({ movies }) {
   const location = useLocation();
   return (
