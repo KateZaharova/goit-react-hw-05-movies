@@ -25,15 +25,15 @@ export default function Reviews() {
 
     return (
         <div>
-            {reviews.map((review) => (
+            {(reviews.length>0)  &&  reviews.map((review) => (
                 <div key={review.id}>            
                     <p><b>Author: {review.author}</b></p>
-                    <p>{review.content}</p>              
+                    <p> {review.content}</p>              
                 </div>
             ))}
+            {(reviews.length === 0)  &&  <p>Sorry, we don't have any reviews</p>              
+            }
         </div>
-    );
-     
-      
+    );  
 }
 
