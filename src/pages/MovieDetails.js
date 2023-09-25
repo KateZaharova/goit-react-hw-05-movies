@@ -1,7 +1,7 @@
 import { Link, Outlet, useParams, useLocation } from "react-router-dom";
-import { useEffect, useState} from 'react';
+import { useEffect, useState, Suspense} from 'react';
 import { fetchMovieDetails } from "api";
-import {Container, WrapperPhoto, WrapperText, StyledLink} from "../components/MovieDetails.styled"
+import {Container, WrapperPhoto, WrapperText, StyledLink, WrapperAddInfo} from "../components/MovieDetails.styled"
 
 
 export default function MovieDetails() {
@@ -63,7 +63,7 @@ export default function MovieDetails() {
                </WrapperText>
 
             </Container>
-            <div>
+            <WrapperAddInfo>
                 <h2>Additional information</h2>
             <nav>
                 <li>
@@ -73,9 +73,11 @@ export default function MovieDetails() {
                     <StyledLink to="reviews">Reviews</StyledLink>
                 </li>
             </nav>
-            </div>
+            </WrapperAddInfo>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Outlet/>
+            </Suspense>
             
-            <Outlet/>
         </section>
     )
 }

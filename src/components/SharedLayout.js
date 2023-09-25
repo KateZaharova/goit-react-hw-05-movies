@@ -1,4 +1,5 @@
-import { NavLink, Outlet} from 'react-router-dom';
+import { Suspense } from "react";
+import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyle } from "./GlobalStyle";
 
@@ -11,8 +12,11 @@ export const SharedLayout = () => {
           <StyledLink to="/movies">Movies</StyledLink>
         </nav>
           </header>
-          <GlobalStyle />
-          <Outlet />
+      <GlobalStyle />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+          
           </Container>
   );
 }; 
@@ -38,7 +42,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
-  font-size: 40px;
+  font-size: 24px;
 `;
 
 

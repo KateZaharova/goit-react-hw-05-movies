@@ -8,11 +8,17 @@ export const Container = styled.div`
 `;
 
 export const WrapperPhoto = styled.div`
-
 `;
 
 export const WrapperText = styled.div`
+`;
 
+export const WrapperAddInfo = styled.div`
+padding-bottom: 60px;
+margin-top: 20px;
+margin-bottom: 60px;
+border-bottom: 3px solid black;
+border-top: 3px solid black;
 `;
 
 export const StyledLink = styled(NavLink)`
