@@ -4,14 +4,14 @@ import MovieDetails from "../pages/MovieDetails";
 import Movies from "../pages/Movies";
 import Cast from "../pages/Cast";
 import Reviews from "../pages/Reviews";
-import {Layout} from "./Layout";
+import {SharedLayout} from "./SharedLayout";
 
 
 
 export const App = () => {
   return (
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<SharedLayout/>}>
           <Route index element={<Home/>}/>
           <Route path="/movies" element={<Movies/>}/>
           <Route path="/movies/:movieId" element={<MovieDetails/>}>

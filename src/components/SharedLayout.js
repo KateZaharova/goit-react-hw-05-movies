@@ -2,7 +2,20 @@ import { NavLink, Outlet} from 'react-router-dom';
 import styled from 'styled-components';
 import { GlobalStyle } from "./GlobalStyle";
 
-
+export const SharedLayout = () => {
+  return (
+    <Container>
+      <header>
+      <nav>
+          <StyledLink to="/" end>Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
+        </nav>
+          </header>
+          <GlobalStyle />
+          <Outlet />
+          </Container>
+  );
+}; 
 
 export const StyledLink = styled(NavLink)`
   color: black;
@@ -29,17 +42,3 @@ export const Container = styled.div`
 `;
 
 
-export const Layout = () => {
-  return (
-    <Container>
-      <header>
-      <nav>
-          <StyledLink to="/" end>Home</StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
-        </nav>
-          </header>
-          <GlobalStyle />
-          <Outlet />
-          </Container>
-  );
-}; 
