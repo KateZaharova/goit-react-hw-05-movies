@@ -36,6 +36,14 @@ export default function MovieDetails() {
             return genres.map(genre => genre.name).join(' ');
         }
         return '';
+    };
+
+
+    function getUserScore(vote_average) {
+        if (vote_average !== undefined) {
+            return ((vote_average) * 10).toFixed(0);
+        }
+        return "";
     }
 
     return (
@@ -47,7 +55,7 @@ export default function MovieDetails() {
                 </WrapperPhoto>
                 <WrapperText>
                     <h2>{movieDetails.title} ({getYear(movieDetails.release_date)})</h2>
-                    <p>User Score:...%</p>
+                    <p>User Score: { getUserScore(movieDetails.vote_average)} %</p>
                     <h2>Overview</h2>
                     <p>{movieDetails.overview}</p>
                     <h2>Genres</h2>

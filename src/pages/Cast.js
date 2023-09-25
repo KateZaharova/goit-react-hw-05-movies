@@ -19,7 +19,7 @@ export default function Cast() {
       } 
     }
     getCastDetails();
-    }, []);
+    }, [movieId]);
 
 
     return (
