@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState} from 'react';
+import { useParams,Outlet } from "react-router-dom";
+import { useEffect, useState, Suspense} from 'react';
 import { fetchReview } from "api";
 
 
@@ -33,6 +33,9 @@ export default function Reviews() {
             ))}
             {(reviews.length === 0)  &&  <p>Sorry, we don't have any reviews</p>              
             }
+             <Suspense fallback={<div>Loading...</div>}>
+                <Outlet/>
+            </Suspense>
         </div>
     );  
 }
