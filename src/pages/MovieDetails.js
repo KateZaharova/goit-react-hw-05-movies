@@ -20,7 +20,7 @@ export default function MovieDetails() {
       } 
     }
     getMovieDetails();
-    }, []);
+    }, [movieId]);
         
 
     function getYear(date) {
