@@ -11,6 +11,9 @@ const [searchParams, setSearchParams] = useSearchParams();
 const query = searchParams.get("query") ?? "";
 const [moviesItems, setMoviesItems] = useState([]);
 
+
+
+  
     useEffect(() => {
     async function getMovies() {
         try {
@@ -38,7 +41,8 @@ const handleSubmit = (evt) => {
         <Searchbar className="searchbar">
             <SearchForm className="form" onSubmit={(evt) => {handleSubmit(evt)}}>
             <SearchFormBtn type="submit" className="button" >
-          <SpanBtn className="button-label"><AiOutlineSearch/></SpanBtn>
+                <SpanBtn className="button-label"><AiOutlineSearch /></SpanBtn>
+               
         </SearchFormBtn>
 
     <SearchFormInput
@@ -56,3 +60,5 @@ const handleSubmit = (evt) => {
             )
             
 }
+
+// <Link to={backLinkHref}></Link>

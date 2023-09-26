@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams, useLocation } from "react-router-dom";
+import { Outlet, useParams, useLocation, Link } from "react-router-dom";
 import { useEffect, useState, Suspense} from 'react';
 import { fetchMovieDetails } from "api";
 import {Container, WrapperPhoto, WrapperText, StyledLink, WrapperAddInfo} from "../components/MovieDetails.styled"
@@ -9,7 +9,9 @@ export default function MovieDetails() {
     const [movieDetails, setMovieDetails] = useState({});
     const imgPrefix = "https://image.tmdb.org/t/p/w500"
     const { movieId } = useParams();
- 
+    const backLinkHref = location.state?.from ?? (location.state ?? "/movies");
+
+
     useEffect(() => {
     async function getMovieDetails() {
         try {
@@ -50,7 +52,7 @@ export default function MovieDetails() {
         <section>
             <Container>
                 <WrapperPhoto>
-                    <Link to={location?.state?.from ?? '/'}>Go back</Link>
+                    <Link to={backLinkHref}>Go back</Link>
                     <img src={imgPrefix + movieDetails.poster_path} alt={movieDetails.title} />
                 </WrapperPhoto>
                 <WrapperText>
@@ -67,10 +69,10 @@ export default function MovieDetails() {
                 <h2>Additional information</h2>
             <nav>
                 <li>
-                    <StyledLink to="cast">Cast</StyledLink>
+                        <StyledLink to="cast" state={backLinkHref}>Cast</StyledLink>
                 </li>
                 <li>
-                    <StyledLink to="reviews">Reviews</StyledLink>
+                    <StyledLink to="reviews" state={backLinkHref}>Reviews</StyledLink>
                 </li>
             </nav>
             </WrapperAddInfo>
@@ -81,4 +83,3 @@ export default function MovieDetails() {
         </section>
     )
 }
-
